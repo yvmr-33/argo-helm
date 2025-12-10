@@ -44,7 +44,7 @@ spec:
           
             value: "{{ printf "{{.spec.template.spec.containers[0].image}}" }}"
           - name: canary-version
-            value: {{ .Values.image.tag }}
+            value: "{{ printf "{{.status.stableRS.template.spec.containers[0].image}}" }}"
           - name: stable-service
             value: myservice-stable
           - name: canary-service
