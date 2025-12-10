@@ -40,6 +40,10 @@ spec:
           templates:
           - templateName: error-rate-check 
           args:
+          - name: stable-version
+            value: myservice-stable
+          - name: canary-version
+            value: myservice-canary
           - name: stable-service
             value: myservice-stable
           - name: canary-service
