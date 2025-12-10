@@ -44,6 +44,10 @@ spec:
             value: myservice-stable
           - name: canary-service
             value: myservice-canary
+          - name: stable-service
+            value: myservice-stable
+          - name: canary-service
+            value: myservice-canary
       steps:
       - setWeight: 10 
       - pause: {}
