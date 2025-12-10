@@ -4,6 +4,8 @@ metadata:
   name: error-rate-check
 spec:
   args:
+  - name: stable-version
+  - name: canary-version
   - name: stable-service
   - name: canary-service
   metrics:
