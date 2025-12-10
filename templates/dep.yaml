@@ -44,10 +44,6 @@ spec:
             value: myservice-stable
           - name: canary-service
             value: myservice-canary
-          - name: stable-version
-            value: {{ .Values.image.tag }}
-          - name: canary-version
-            value: {{ .Values.image.tag }}
       steps:
       - setWeight: 10 
       - pause: {}
