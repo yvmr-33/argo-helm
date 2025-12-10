@@ -41,9 +41,9 @@ spec:
           - templateName: error-rate-check 
           args:
           - name: stable-version
-            value: "{{ printf "{{.rollout.status.stableRS.template.metadata.labels.version}}" }}"
+            value: value: {{ .Values.image.stableTag }}
           - name: canary-version
-            value: "{{ printf "{{.spec.template.metadata.labels.version}}" }}"
+            value: value: {{ .Values.image.tag }}
           - name: stable-service
             value: myservice-stable
           - name: canary-service
