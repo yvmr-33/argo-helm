@@ -41,9 +41,9 @@ spec:
           - templateName: error-rate-check 
           args:
           - name: stable-version
-            value: value: {{ .Values.image.stableTag }}
+            value: {{ .Values.image.stableTag }}
           - name: canary-version
-            value: value: {{ .Values.image.tag }}
+            value: {{ .Values.image.tag }}
           - name: stable-service
             value: myservice-stable
           - name: canary-service
