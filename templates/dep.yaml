@@ -1,0 +1,54 @@
+
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: myservice
+spec:
+  replicas: 10 # Total replicas (was 15 + 1)
+  selector:
+    matchLabels:
+      app: myservice
+  template:
+    metadata:
+      labels:
+        app: myservice
+        version: {{ .Values.image.tag }}
+    spec:
+      containers:
+      - name: myservice
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        ports:
+        - containerPort: 3000
+        env:
+        - name: VERSION
+          value: "v1"
+  # Define the Canary strategy
+  strategy:
+    canary:
+      
+      # References the services created above
+      stableService: myservice-stable
+      canaryService: myservice-canary
+      # Configures Istio traffic routing
+      trafficRouting:
+        istio:
+          virtualService:
+            name: myservice-vs
+            routes:
+            - http
+      analysis:
+          templates:
+          - templateName: error-rate-check 
+          args:
+          - name: stable-service
+            value: myservice-stable
+          - name: canary-service
+            value: myservice-canary
+      steps:
+      - setWeight: 10 
+      - pause: {}
+      - setWeight: 50
+      - pause: {} 
+      - setWeight: 90 
+      - pause: {}
+      - setWeight: 100 
