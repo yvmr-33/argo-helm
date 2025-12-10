@@ -41,9 +41,11 @@ spec:
           - templateName: error-rate-check 
           args:
           - name: stable-version
-            value: {{ tpl "{{ $controller.stableImage | regexReplaceAll \"(.*):(.*)\" \"$2\" }}" . | quote }}
+            value: |
+            {{ $controller.stableImage | regexReplaceAll "(.*):(.*)" "$2" }}
           - name: canary-version
-            value: {{ tpl "{{ $controller.latestImage | regexReplaceAll \"(.*):(.*)\" \"$2\" }}" . | quote }}
+            value: |
+            {{ $controller.latestImage | regexReplaceAll "(.*):(.*)" "$2" }}
           - name: stable-service
             value: myservice-stable
           - name: canary-service
