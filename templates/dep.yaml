@@ -41,11 +41,9 @@ spec:
           - templateName: error-rate-check 
           args:
           - name: stable-version
-            value: |
-            {{ $controller.stableImage }}
+            value: {{ printf "'{{ $controller.latestImage }}'" | quote }}
           - name: canary-version
-            value: |
-            {{ $controller.latestImage }}
+            value: {{ printf "'{{ $controller.latestImage }}'" | quote }}
           - name: stable-service
             value: myservice-stable
           - name: canary-service
