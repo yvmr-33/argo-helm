@@ -41,9 +41,11 @@ spec:
           - templateName: error-rate-check 
           args:
           - name: stable-version
-            value: {{ printf "'{{ $controller.latestImage }}'" | quote }}
+            valueFrom:
+              podTemplateHashValue: Stable
           - name: canary-version
-            value: {{ printf "'{{ $controller.latestImage }}'" | quote }}
+            valueFrom:
+              podTemplateHashValue: Latest
           - name: stable-service
             value: myservice-stable
           - name: canary-service
