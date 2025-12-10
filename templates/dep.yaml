@@ -45,9 +45,9 @@ spec:
           - name: canary-service
             value: myservice-canary
           - name: stable-version
-            value: '{{.spec.template.metadata.labels.version}}' # Special Rollout variable
+            value: {{ .Values.image.tag }}
           - name: canary-version
-            value: '{{.spec.template.metadata.labels.version}}' # Special Rollout variable
+            value: {{ .Values.image.tag }}
       steps:
       - setWeight: 10 
       - pause: {}
