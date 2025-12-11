@@ -11,7 +11,7 @@ spec:
   - name: canary-service
   metrics:
   - name: relative-error-rate
-    successCondition: len(result) == 0 || result[0] <= 0 # Pass if (Canary - 1.5*Stable) is negative or zero
+    successCondition: len(result) == 0 || result[0] <= 0 
     interval: 1m
     failureLimit: 1 
     provider:
