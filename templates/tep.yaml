@@ -4,15 +4,11 @@ metadata:
   name: error-rate-check
 spec:
   args:
-  - name: test-variable
-  - name: test-variable1
   - name: stable-version
   - name: canary-version
-  - name: stable-service
-  - name: canary-service
   metrics:
   - name: relative-error-rate
-    successCondition: len(result) == 0 ||result[0] <= 0 
+    successCondition: result[0] <= 0 
     interval: {{ .Values.Variables.interval }}
     failureLimit: {{ .Values.Variables.failureLimit }}
     provider:
@@ -30,9 +26,5 @@ spec:
           /
           ( (sum(rate(istio_requests_total{rollouts_pod_template_hash=~"{{ printf "{{args.stable-version}}" }}"}[{{ .Values.Variables.windowTime }}])) or vector(1) ) > 0 or vector(1) )
           )
-          +
-          ( sum(rate(istio_requests_total{rollouts_pod_template_hash=~"{{ printf "{{args.test-variable}}" }}"}[10m]))or vector(0) )
-          +
-          ( sum(rate(istio_requests_total{rollouts_pod_template_hash=~"{{ printf "{{args.test-variable1}}" }}"}[10m]))or vector(0) )
 
       
