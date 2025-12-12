@@ -13,7 +13,7 @@ spec:
   - name: relative-error-rate
     successCondition: len(result) == 0 || result[0] <= 0 
     interval: 1m
-    failureLimit: 1 
+    failureLimit: {{ .Values.Variables.failureLimit }}
     provider:
       prometheus:
         address: http://prometheus.istio-system.svc.cluster.local:9090 
