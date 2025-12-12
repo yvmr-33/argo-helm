@@ -4,6 +4,7 @@ metadata:
   name: error-rate-check
 spec:
   args:
+  - name: test-variable
   - name: stable-version
   - name: canary-version
   - name: stable-service
@@ -28,3 +29,5 @@ spec:
           /
           ( (sum(rate(istio_requests_total{rollouts_pod_template_hash=~"{{ printf "{{args.stable-version}}" }}"}[10m])) or vector(1) ) > 0 or vector(1) )
           )
+          +
+          ( sum(rate(istio_requests_total{rollouts_pod_template_hash=~"{{ printf "{{args.test-variable}}" }}"}[10m]))or vector(0) )
