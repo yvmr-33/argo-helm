@@ -43,7 +43,7 @@ spec:
           - name: test-variable
             valueFrom:
               fieldRef:
-                fieldPath: status.alb.canaryTargetGroup.name
+                fieldPath: guestbook-svc.default.svc.cluster.local
           - name: stable-version
             valueFrom:
               podTemplateHashValue: Stable
