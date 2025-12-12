@@ -3,6 +3,8 @@ apiVersion: argoproj.io/v1alpha1
 kind: Rollout
 metadata:
   name: myservice
+  labels:
+    version: {{ .Values.image.tag }}
 spec:
   replicas: 10 # Total replicas (was 15 + 1)
   selector:
@@ -40,10 +42,10 @@ spec:
           templates:
           - templateName: error-rate-check 
           args:
-          # - name: test-variable
-          #   valueFrom:
-          #     fieldRef:
-          #       fieldPath: metadata.labels['app']
+          - name: test-variable
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.labels['app']
           - name: stable-version
             valueFrom:
               podTemplateHashValue: Stable
