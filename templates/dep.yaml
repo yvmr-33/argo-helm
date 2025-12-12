@@ -40,10 +40,10 @@ spec:
           templates:
           - templateName: error-rate-check 
           args:
-          - name: test-variable
-            valueFrom:
-              fieldRef:
-                fieldPath: metadata.labels['app']
+          # - name: test-variable
+          #   valueFrom:
+          #     fieldRef:
+          #       fieldPath: metadata.labels['app']
           - name: stable-version
             valueFrom:
               podTemplateHashValue: Stable
