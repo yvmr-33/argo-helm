@@ -41,9 +41,7 @@ spec:
           - templateName: error-rate-check 
           args:
           - name: test-variable
-            valueFrom:
-              fieldRef:
-                fieldPath: xb
+            value: hgx
           - name: stable-version
             valueFrom:
               podTemplateHashValue: Stable
