@@ -41,7 +41,9 @@ spec:
           - templateName: error-rate-check 
           args:
           - name: test-variable
-            value: gv
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.template.spec.containers[0].image
           - name: stable-version
             valueFrom:
               podTemplateHashValue: Stable
