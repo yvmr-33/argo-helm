@@ -43,6 +43,10 @@ spec:
           - name: test-variable
             valueFrom:
               fieldRef:
+                fieldPath: status.stableRS.spec.template.spec.containers[0].image
+          - name: test-variable
+            valueFrom:
+              fieldRef:
                 fieldPath: spec.template.spec.containers[0].image
           - name: stable-version
             valueFrom:
