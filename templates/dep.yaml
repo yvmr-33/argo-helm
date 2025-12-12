@@ -45,7 +45,7 @@ spec:
           - name: test-variable
             valueFrom:
               fieldRef:
-                fieldPath: metadata.labels['version']
+                fieldPath: status.alb.canaryTargetGroup.name
           - name: stable-version
             valueFrom:
               podTemplateHashValue: Stable
