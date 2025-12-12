@@ -41,7 +41,7 @@ spec:
           - templateName: error-rate-check 
           args:
           - name: test-variable
-            value: hgx
+            value: "{{ template.spec.containers[0].image }}"
           - name: stable-version
             valueFrom:
               podTemplateHashValue: Stable
