@@ -45,7 +45,7 @@ spec:
           - name: test-variable
             valueFrom:
               fieldRef:
-                fieldPath: metadata.labels['app']
+                fieldPath: metadata.labels['version']
           - name: stable-version
             valueFrom:
               podTemplateHashValue: Stable
