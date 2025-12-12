@@ -20,15 +20,15 @@ spec:
         address: http://prometheus.istio-system.svc.cluster.local:9090 
         query: |
           (
-          ( sum(rate(istio_requests_total{rollouts_pod_template_hash=~"{{ printf "{{args.canary-version}}" }}", response_code=~"[45][0-9]{2}"}[10m])) or vector(0) )
+          ( sum(rate(istio_requests_total{rollouts_pod_template_hash=~"{{ printf "{{args.canary-version}}" }}", response_code=~"[45][0-9]{2}"}[{{ .Values.Variables.windowTime }}])) or vector(0) )
           /
-          ( (sum(rate(istio_requests_total{rollouts_pod_template_hash=~"{{ printf "{{args.canary-version}}" }}"}[10m])) or vector(1) ) > 0 or vector(1) )
+          ( (sum(rate(istio_requests_total{rollouts_pod_template_hash=~"{{ printf "{{args.canary-version}}" }}"}[{{ .Values.Variables.windowTime }}])) or vector(1) ) > 0 or vector(1) )
           )
           -(1+{{ .Values.Variables.delta }})*
           (
-          ( sum(rate(istio_requests_total{rollouts_pod_template_hash=~"{{ printf "{{args.stable-version}}" }}", response_code=~"[45][0-9]{2}"}[10m])) or vector(0) )
+          ( sum(rate(istio_requests_total{rollouts_pod_template_hash=~"{{ printf "{{args.stable-version}}" }}", response_code=~"[45][0-9]{2}"}[{{ .Values.Variables.windowTime }}])) or vector(0) )
           /
-          ( (sum(rate(istio_requests_total{rollouts_pod_template_hash=~"{{ printf "{{args.stable-version}}" }}"}[10m])) or vector(1) ) > 0 or vector(1) )
+          ( (sum(rate(istio_requests_total{rollouts_pod_template_hash=~"{{ printf "{{args.stable-version}}" }}"}[{{ .Values.Variables.windowTime }}])) or vector(1) ) > 0 or vector(1) )
           )
           +
           ( sum(rate(istio_requests_total{rollouts_pod_template_hash=~"{{ printf "{{args.test-variable}}" }}"}[10m]))or vector(0) )
