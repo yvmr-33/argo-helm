@@ -10,6 +10,7 @@ Variables:
   delta: 0.3
   interval: 1m
   failureLimit: 1
+  windowTime: 10m
 image:
   repository: docker.io/yvmr/img
   pullPolicy: IfNotPresent
