@@ -3,8 +3,6 @@ apiVersion: argoproj.io/v1alpha1
 kind: Rollout
 metadata:
   name: myservice
-  labels:
-    version: {{ .Values.image.tag }}
 spec:
   replicas: 10 # Total replicas (was 15 + 1)
   selector:
