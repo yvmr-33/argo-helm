@@ -43,7 +43,7 @@ spec:
           - name: test-variable
             valueFrom:
               fieldRef:
-                fieldPath: stable.spec.template.spec.containers[0].image
+                fieldPath: metadata.labels['env']
           - name: stable-version
             valueFrom:
               podTemplateHashValue: Stable
