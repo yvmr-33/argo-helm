@@ -40,24 +40,12 @@ spec:
           templates:
           - templateName: error-rate-check 
           args:
-          - name: test-variable
-            valueFrom:
-              fieldRef:
-                fieldPath: status.stableRS.template.spec.containers[0].image
-          - name: test-variable1
-            valueFrom:
-              fieldRef:
-                fieldPath: spec.template.spec.containers[0].image
           - name: stable-version
             valueFrom:
               podTemplateHashValue: Stable
           - name: canary-version
             valueFrom:
               podTemplateHashValue: Latest
-          - name: stable-service
-            value: myservice-stable
-          - name: canary-service
-            value: myservice-canary
       steps:
       - setWeight: 10 
       - pause: {}
